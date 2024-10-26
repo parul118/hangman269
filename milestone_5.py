@@ -11,7 +11,7 @@ class Hangman:
         
         self.word_guessed = ['_' for _ in self.word]
         
-        self.num_letters = len(set(self.word))
+        self.num_letters = len(self.word)
         
         
         self.num_lives = num_lives
@@ -33,7 +33,7 @@ class Hangman:
                 if (self.word[i] == guess):
                     self.word_guessed[i] = guess
                     
-            self.num_letters-1
+            self.num_letters -= 1
         else:
             self.num_lives = self.num_lives - 1
             
@@ -65,12 +65,15 @@ class Hangman:
         while game.num_lives > 0 and game.num_letters > 0:
             game.ask_for_input()
             print(" ".join(game.word_guessed))
+            
             if game.num_letters == 0:
+            
                 print("Congratulations! You won the game!")
                 break
-            elif game.num_lives == 0:
+            
+        if game.num_lives == 0:
                 print("You lost! The word was:", game.word)
                 
             
-word_list = ['python', 'java', 'kotlin', 'javaScript']
+word_list = ['python', 'java', 'kotlin', 'javascript']
 game = Hangman.play_game(word_list)
